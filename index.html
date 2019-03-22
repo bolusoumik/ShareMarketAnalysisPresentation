@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Analysis of share market for mutual fund allocation & deriving relationship among different sector</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section>
+				<h2>Analysis of share market for mutual fund allocation & deriving relationship among different sector
+				</h2>
+				<p>
+					<small>Created by <a href="https://achyutghosh.github.io/">Achyut Ghosh</a> and <a
+							href="https://github.com/bolusoumik">Soumik Bose</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Contents</h2>
+			
+				<ol>
+					<li>Abstract</li>
+					<li>Dimensions of Analysis</li>
+					<li>Sample Dataset</li>
+					<li>Different Regression Models</li>
+					<li>Random Forest Regression</li>
+					<li>Growth Rate Calculation</li>
+					<li>Graphical Analysis</li>		
+					<li>Allocation of Funds</li>	
+					<li>Spreadsheet Example</li>
+					<li>Finding The Relationship</li>
+					<li>References</li>		
+				</ol>
+			</section>
+
+
+			<section>
+				<h2>Abstract</h2>
+				<p>
+					<ul>
+						<li>Share market prediction is always an interesting research topic as it deals with a lot of
+							uncertainties and
+							unpredictability.</li>
+						<li>This project analyses the correlation between two different sectoral indices (e.g. between
+							Automobile sector index and
+							between Metal sector index, between Bank sector index and IT sectoral index etc.) in a time
+							lagged manner.</li>
+					</ul>
+				</p>
+			</section>
+
+			<section>
+				<!-- <h2>Dimension of Analysis</h2> -->
+				<section>
+					<h2>Dimensions of Analysis</h2>
+					<p>
+						<b>Time:</b> Time is almost an inevitable dimension in data warehouse formation. For the share
+						market Time could be
+						represented
+						in many formats: Hour, Day, Week, Month, Quarter, Year etc. as required for the analysis.
+					</p>
+				</section>
+
+				<section>
+					<h2>Dimensions of Analysis</h2>
+					<p>
+						<b>Closing Price:</b> “Closing price” generally refers to the last price at which a stock trades
+						during a regular trading
+						session. For Indian share market regular trading sessions run from 9:00 a.m. to 3:00 p.m.(GMT).
+					</p>
+				</section>
+
+				<section>
+					<h2>Dimensions of Analysis</h2>
+					<p>
+						<b>Company Group:</b> This could be represented in different ways, however, they are generally
+						grouped to represent a specific
+						industry (such as Banking, IT, Auto etc.) or based on market capitalization (such as Large Cap,
+						Mid Cap, Small Cap).
+					</p>
+				</section>
+			</section>
+			
+			<section>
+			
+				<h2> Analyzing Dataset</h2>
+				<p>
+				<ul>
+					<li>In this present work our main moto is to find the preferable method that would help us to predict the stock.</li>
+					<li>Our prediction model is depend on technical analysis where all parameters are involved.</li>
+					<li>Different regression models applied on scatter plot.</li>
+				</ul>	
+				</p>
+				
+			</section>
+			
+			<section>
+				<h2>Sample Dataset</h2>
+
+				<a href="#" class="navigate-down">
+					<img width="500" height="300" src="images/scatter plot.png" alt="Down arrow">
+				</a>
+				<p>This is the scatter plot of sample dataset of TCS from Aug 2004 to Feb 2019.</p>
+			</section>
+
+			<section>
+				<section>
+					<h2>Different Regression Models</h2>
+
+					<a href="#" class="navigate-down">
+						<img width="500" height="300" src="images/deg1.png" alt="Down arrow">
+					</a>
+					<p>This is Linear Regression (TCS Month based) with R-squared value= 0.5234588</p>
+				</section>
+
+				<section>
+					<h2>Different Regression Models</h2>
+
+					<a href="#" class="navigate-down">
+						<img width="500" height="300" src="images/deg2.png" alt="Down arrow">
+					</a>
+					<p>This is Polynomial Regression of degree 2 (TCS Month based) with R-squared value= 0.6379988</p>
+				</section>
+
+				<section>
+					<h2>Different Regression Models</h2>
+
+					<a href="#" class="navigate-down">
+						<img width="500" height="300" src="images/deg3.png" alt="Down arrow">
+					</a>
+					<p>This is Polynomial Regression of degree 3 (TCS Month based) with R-squared value= 0.6126444</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Random Forest Regression Model</h2>
+
+					<a href="#" class="navigate-down">
+						<img width="500" height="300" src="images/randomforest.png" alt="Down arrow">
+					</a>
+					<p>This is Randomforest Regression (TCS Month based) with R-Squared value=0.9909316</p>
+				</section>
+
+				<section>
+					<h2>Random Forest Regression Psudo Code</h2>
+
+					<pre><code class="hljs" data-trim contenteditable>
+						#Converting date into equivalent timeframe
+						timestamp=[]
+						import datetime
+						import time
+						for d in x:
+						t=datetime.datetime.strptime(d[0],'%Y/%m/%d').date()
+						ti=time.mktime(datetime.datetime
+						.strptime(d[0], '%Y/%m/%d')
+						.timetuple())
+						timestamp.append([ti])
+						
+						#Fitting random forest regression for training set
+						from sklearn.ensemble import RandomForestRegressor
+						regressor = 
+						RandomForestRegressor(n_estimators = 80, random_state=0)
+						regressor.fit(x_train,y_train)
+						
+						#Predicting the test set result
+						y_pred=regressor.predict(x_test)</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Growth Rate Calculation</h2>
+					
+					<p>
+						<ul>
+						<li>Pick up a company from a particular sector.</li>
+						<li>Find the percentages of the growth rate of the company for a different time period with respect to the month immediate
+						earlier.</li>
+						</ul>
+					</p>
+				</section>
+				
+				<section>
+					<h2>Steps for calculation</h2>
+
+					<ol>
+						<li>Deviation = Actual price-Predicted best fit price</li>
+						<li>Weight = 1/(P *(p+1)/2), where P=Total Observation</li>
+						<li>Growth = (Actual price of 2nd observation- Actual price of 1st observation)/ Actual price of 1st observation</li>
+						<li>CNGR(Company Net Growth Rate) = Growth * Weight</li>
+						<li>CNGRj = Y1 ∗ Gr1 + Y2 ∗ Gr2 + · · · + Yi ∗ Gri + · · · + Yp ∗ Grp, where CNGRj is the Company Net Growth Rate of jth company (where j=1 to m)</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Growth Calculation Psudo Code</h2>
+				
+					<pre><code class="hljs" data-trim contenteditable>
+							#Deviation
+							DeviationT=[]
+							
+							for i in range(0,174):
+							Dev= Yt[i]-Y_pred_TCS[i]
+							DeviationT.append(Dev)
+							
+							P_T=len(Yt)
+
+							#compute Yi
+							#formula 1
+							m_Yi_T=[]
+							Q=P_T
+							#Weight Calculation
+							Wt_T=1/(P_T * (P_T+1)/2)
+							i=0
+							while (i<244): 
+								Yi=Wt_T*Q
+								m_Yi_T.append(Yi) 
+								i=i+1
+							#compute Yi
+							#formula 2   
+							for i in range(0,174): 
+							    Yi= Wt_T*Q
+							    m_Yi_T.append(Yi)
+								Q=Q-1
+								
+							######Step 3########
+							Gr_T=[]
+							G=0.0
+							#for first growth is 0
+							Gr_T.append(G)
+							#Compute Growth(Gr)
+							for i in range(1,174):
+								 G=(Yt[i]-Yt[i-1])/Yt[i-1] * 100
+								 Gr_T.append(G)
+							#Company net growth Rate
+							#CNGR
+							CNGR_T=[]
+
+							for i in range(0,174):
+    						 	CN=Gr_T[i]*m_Yi_T[i]
+    							CNGR_T.append(CN)
+					
+							</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<h2>Graphical Analysis</h2>
+					
+				<a href="#" class="navigate-down">
+					<img width="400" height="300" src="images/growth.png" alt="Down arrow">
+				</a>
+
+				<a href="#" class="navigate-down">
+					<img width="400" height="300" src="images/growth1.png" alt="Down arrow">
+				</a>
+				<p><small>We have considered 3 IT Companies and Stock price started from January 2000 to Jan 2019</small></p>
+			</section>
+
+			<section>
+				<section>
+					<h2>Allocation of Fund</h2>
+
+					<p>
+						<ul>
+							<li>Our motive is to allocate more funds in such sectors and companies having better growth rate over the sectors.</li>
+							<li>Find out the Company Multiplying Factor (CMF):
+							CMF = 100/(Gr1 + Gr2 +…… Grn ), Where Gi is the growth rate of a company containing n number of companies.</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Allocation of Fund</h2>
+					<p>
+						<ul>
+							<li>Determine the company wise fund to be invested by the mathematical Formula given below.<br>CAk = gk × CMF for sector Ci,
+							(where k = 1 to m ).
+							Here CAk denotes company wise allocation percentage wise.</li>
+							<li>Thus company wise allocation is given by <br>SCAk = SFAi × CAk</li>
+						</ul>
+					</p>
+				</section>
+					
+				<section>
+					<h2>Spreadsheet Example</h2>
+					
+					<a href="#" class="navigate-down">
+						<img width="700" height="400" src="images/csv.png" alt="Down arrow">
+					</a>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Finding Relationship</h2>
+					
+					<p>
+						<ul>
+							<li>A correlation between different companies Growth indicates that if growth of certain Company increase or
+							decrease what
+							is the impact of that change into other Company's Growth.
+							</li>
+							<li>The Value of the Correlation varies from -1 to +1</li>
+						</ul>
+					</p>
+					
+				</section>
+
+				<section>
+					<h2>Finding Relationship</h2>
+
+					<a href="#" class="navigate-down">
+						<img width="400" height="300" src="images/tcs-growth.png" alt="Down arrow">
+					</a>
+					
+					<a href="#" class="navigate-down">
+						<img width="400" height="300" src="images/infosys_growth.png" alt="Down arrow">
+					</a>
+					<p><small>Corelation coefficient of TCS & Infosys is -0.15566157 (Left) where as Corelation coefficient of
+							TCS & ITC it is 0.08431221 (Right).</small></p>
+				</section>
+				
+			</section>
+
+			<section>
+				<section>
+					<h2>References</h2>
+					<ul>
+						<li><a
+								href="https://books.google.co.in/books?id=eGclDwAAQBAJ&pg=PA327&lpg=PA327&dq=share+market+analysis+in+time+lagged+manner&source=bl&ots=ScY2pLV2Bn&sig=ACfU3U0Fkjpk_tO57HXQR76im6Z9xBr1GA&hl=en&sa=X&ved=2ahUKEwjhpsH_gonhAhXJPo8KHT82BeoQ6AEwBnoECAMQAQ#v=onepage&q=share%20market%20analysis%20in%20time%20lagged%20manner&f=false">Share
+								Market Sectoral Indices Movement
+								Forecast
+							</a> by Soumya Sen, Giridhar Maji & Amitrajit Sarkar</li>
+						<li><a
+								href="https://www.researchgate.net/publication/224385407_A_Data_mining_algorithm_to_analyse_stock_market_data_using_lagged_correlation">Data
+								mining algorithm to analyse stock market</a> <br> by Cicil Fonseka & Liwan H. Liyanage</li>
+						<li>Atsalakis GS, Valavanis KP (2009) Surveying stock market forecasting techniques -
+							part ii: Soft computing methods. Expert Systems with Applications 36(3):5932 -
+							5941</li>
+						
+					</ul>
+				</section>
+				
+				<section>
+					<h2>References</h2>
+					<ul>
+						<li>Basher SA, Sadorsky P (2006) Oil price risk and emerging stock markets. Global
+						finance journal 17(2):224 - 251</li>
+						<li>Chaudhuri S, Dayal U (1997) An overview of data warehousing and olap technology. ACM Sigmod record 26(1):65 - 74</li>
+						<li><a
+								href="https://www.bseindia.com/markets/equity/EQReports/StockPrcHistori.aspx?scripcode=512289&flag=sp&Submit=G">BSE
+								Bombay Stock Exchange, India</a></li>
+						<li><a href=" http://www.nseindia.com">NSE National Stock Exchange, India.</a></li>
+						<li><a href=" http://www.sebi.gov.in">SEBI Securities & Exchange Board of India.</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>References</h2>
+					<ul>
+						<li>Mingyue Q, Cheng L, Yu S (2016) Application of the artifical neural network
+						in predicting the direction of stock market index. In: 2016 10th International
+						Conference on Complex, Intelligent, and Software Intensive Systems (CISIS),
+						IEEE, pp 219-223</li>
+						<li>Mondal D, Maji G, Sen S, Goto T, Debnath NC (2017) A data warehouse based
+						modelling technique for stock market analysis</li>
+						<li>Sen S, Roy S, Sarkar A, Chaki N, Debnath NC (2014) Dynamic discovery of query
+						path on the lattice of cuboids using hierarchical data granularity and storage
+						hierarchy. Journal of Computational Science 5(4):675 - 683</li>
+					</ul>
+				</section>
+			</section>
+
+			<section style="text-align: left;">
+				<h1>THANK YOU</h1>
+				<p>
+					- <a href="">Presentation &amp; Source Code</a>
+				</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		// More info https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			// More info https://github.com/hakimel/reveal.js#dependencies
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/search/search.js', async: true },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+
+	</script>
+
+</body>
+
+</html>
